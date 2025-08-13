@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hall da Fama - Ranking de Performance</title>
+    
+    <style>
+        /* Variáveis CSS para facilitar a personalização das cores */
+        :root {
+            --cor-fundo-principal: #222;
+            --cor-fundo-card: #333;
+            --cor-texto-principal: #eee;
+            --cor-destaque: #00bcd4; /* Ciano moderno */
+            --cor-primeiro: #ffc107; /* Amarelo ouro */
+            --cor-segundo: #9e9e9e; /* Cinza prata */
+            --cor-terceiro: #a1887f; /* Marrom bronze */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--cor-fundo-principal);
+            color: var(--cor-texto-principal);
+            text-align: center;
+            margin: 0;
+            padding: 40px 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background-color: var(--cor-fundo-card);
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px; /* Tamanho da logo */
+            opacity: 0.7;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.8em;
+            text-transform: uppercase;
+            color: var(--cor-destaque);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        .podium-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            align-items: end;
+            margin-bottom: 40px;
+        }
+
+        .podium-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .foto-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 15px;
+            border: 4px solid transparent;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .foto-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .foto-container:hover {
+            transform: scale(1.05);
+        }
+
+        /* Estilos específicos para cada posição */
+        .podium-item.primeiro .foto-container {
+            border-color: var(--cor-primeiro);
+            box-shadow: 0 6px 12px rgba(255, 193, 7, 0.5);
+        }
+        .podium-item.segundo .foto-container {
+            border-color: var(--cor-segundo);
+            box-shadow: 0 6px 12px rgba(158, 158, 158, 0.5);
+        }
+        .podium-item.terceiro .foto-container {
+            border-color: var(--cor-terceiro);
+            box-shadow: 0 6px 12px rgba(161, 136, 127, 0.5);
+        }
+
+        .info-colaborador h3 {
+            font-size: 1.4em;
+            margin: 0 0 5px 0;
+            font-weight: bold;
+            color: var(--cor-texto-principal);
+        }
+        .podium-item.primeiro .info-colaborador h3 {
+            color: var(--cor-primeiro);
+        }
+        .podium-item.segundo .info-colaborador h3 {
+            color: var(--cor-segundo);
+        }
+        .podium-item.terceiro .info-colaborador h3 {
+            color: var(--cor-terceiro);
+        }
+
+        .info-colaborador p {
+            font-size: 1em;
+            color: #bbb;
+            margin: 0;
+        }
+
+        .ranking-label {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .podium-item.primeiro .ranking-label { color: var(--cor-primeiro); }
+        .podium-item.segundo .ranking-label { color: var(--cor-segundo); }
+        .podium-item.terceiro .ranking-label { color: var(--cor-terceiro); }
+
+        /* Ajuste de altura para o pódio */
+        .podium-item.primeiro { transform: scale(1.1); margin-bottom: 20px; }
+        .podium-item.segundo { transform: translateY(10px); }
+        .podium-item.terceiro { transform: translateY(20px); }
+
+        #mensagem-motivacional {
+            margin-top: 50px;
+            padding: 30px;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            border-left: 5px solid var(--cor-destaque);
+        }
+        #mensagem-motivacional p {
+            font-family: 'Georgia', serif;
+            font-size: 1.5em;
+            font-style: italic;
+            color: #ddd;
+            margin: 0;
+        }
+        #mensagem-motivacional span {
+            display: block;
+            margin-top: 15px;
+            font-size: 1.1em;
+            color: var(--cor-destaque);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="LOGO_M_F_1_-removebg-preview.png" alt="Logo da Empresa" class="logo">
+
+        <div class="header">
+            <h1>Hall da Fama</h1>
+            <p>Reconhecimento aos colaboradores que fazem a diferença.</p>
+        </div>
+
+        <div class="podium-grid">
+            
+            <div class="podium-item segundo">
+                <div class="ranking-label">2º Lugar</div>
+                <div class="foto-container">
+                    <img src="foto_segundo_lugar.jpg" alt="Foto do 2º Lugar">
+                </div>
+                <div class="info-colaborador">
+                    <h3>WANDERSON MENDES DE MOURA</h3>
+                    <p>Performance Excepcional</p>
+                </div>
+            </div>
+
+            <div class="podium-item primeiro">
+                <div class="ranking-label">1º Lugar</div>
+                <div class="foto-container">
+                    <img src="foto_primeiro_lugar.jpg" alt="Foto do 1º Lugar">
+                </div>
+                <div class="info-colaborador">
+                    <h3>MATHEUS DE JESUS</h3>
+                    <p>Líder em Resultados</p>
+                </div>
+            </div>
+
+            <div class="podium-item terceiro">
+                <div class="ranking-label">3º Lugar</div>
+                <div class="foto-container">
+                    <img src="foto_terceiro_lugar.jpg" alt="Foto do 3º Lugar">
+                </div>
+                <div class="info-colaborador">
+                    <h3>BRENNER OLIVEIRA DE MELO</h3>
+                    <p>Destaque em Arrecadação</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="mensagem-motivacional">
+            <p>
+                "As grandes conquistas não são feitas por um, mas pelo esforço e dedicação de todos. A excelência de vocês impulsiona nosso sucesso."
+            </p>
+            <span>MEIRELES E FREITAS</span>
+        </div>
+
+    </div>
+
+</body>
+</html>
