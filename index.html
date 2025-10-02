@@ -34,7 +34,7 @@
             background-color: var(--cor-fundo-card);
             border-radius: 12px;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
-            padding: 40px; /* Padding para telas maiores */
+            padding: 40px; 
             position: relative;
             overflow: hidden;
         }
@@ -78,7 +78,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Adicionado padding para separar melhor os itens no celular */
             padding-bottom: 20px; 
         }
 
@@ -146,19 +145,19 @@
         .podium-item.segundo .ranking-label { color: var(--cor-segundo); }
         .podium-item.terceiro .ranking-label { color: var(--cor-terceiro); }
 
-        /* Ajuste de altura para o pódio em TELAS GRANDES */
+        /* Ajuste de altura e ordem para o pódio em TELAS GRANDES */
         .podium-item.primeiro { 
             transform: scale(1.1); 
             margin-bottom: 20px; 
-            order: 2; /* Garante que o 1º lugar fique no centro no PC */
+            order: 2; 
         }
         .podium-item.segundo { 
             transform: translateY(10px); 
-            order: 1; /* Garante que o 2º lugar fique à esquerda no PC */
+            order: 1; 
         }
         .podium-item.terceiro { 
             transform: translateY(20px); 
-            order: 3; /* Garante que o 3º lugar fique à direita no PC */
+            order: 3; 
         }
 
         #mensagem-motivacional {
@@ -185,7 +184,6 @@
 
         /* ========================================================= */
         /* CORREÇÃO DE RESPONSIVIDADE: MEDIA QUERY PARA CELULARES */
-        /* Aplica-se a telas com largura máxima de 768px (celulares e tablets pequenos) */
         /* ========================================================= */
         @media (max-width: 768px) {
             
@@ -201,10 +199,10 @@
                 left: 10px;
             }
 
-            /* Reduz o tamanho do título principal */
+            /* ⭐️ CORREÇÃO APLICADA AQUI: Empurra o título para baixo */
             .header h1 {
                 font-size: 2em; 
-                margin-top: 20px; /* Afasta o título da logo */
+                margin-top: 60px; /* Valor ajustado para dar espaço à logo */
             }
 
             /* Muda o Grid para apenas UMA coluna, empilhando os vencedores */
@@ -213,23 +211,17 @@
                 gap: 20px;
             }
             
-            /* Remove transformações e order para exibir em sequência no celular */
+            /* Remove transformações e reorganiza na ordem 1º, 2º, 3º para o celular */
+            .podium-item.primeiro { order: 1; }
+            .podium-item.segundo { order: 2; }
+            .podium-item.terceiro { order: 3; }
+            
             .podium-item.primeiro,
             .podium-item.segundo,
             .podium-item.terceiro {
                 transform: none;
                 margin-bottom: 0;
-                order: initial; /* Volta para a ordem do HTML (2º, 1º, 3º) */
             }
-            
-            /* Para garantir a ordem correta no celular (1º, 2º, 3º), 
-            você pode reverter a ordem no HTML ou usar CSS */
-            /* Se for manter a ordem atual do HTML (2º, 1º, 3º), você pode usar: */
-            .podium-item.segundo { order: 2; }
-            .podium-item.primeiro { order: 1; }
-            .podium-item.terceiro { order: 3; }
-            /* Se preferir a ordem 1º, 2º, 3º no celular, e a ordem no HTML for 1º, 2º, 3º, 
-            basta remover o 'order: initial' e os 'order: X' acima e mudar a estrutura do HTML */
             
             /* Reduz o tamanho da foto e da fonte para caber melhor */
             .foto-container {
