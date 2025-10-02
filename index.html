@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Hall da Fama - Ranking de Performance</title>
     
     <style>
@@ -34,7 +34,7 @@
             background-color: var(--cor-fundo-card);
             border-radius: 12px;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
-            padding: 40px;
+            padding: 40px; /* Padding para telas maiores */
             position: relative;
             overflow: hidden;
         }
@@ -43,7 +43,7 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            width: 100px; /* Tamanho da logo */
+            width: 100px; /* Tamanho da logo em PC */
             opacity: 0.7;
         }
 
@@ -54,7 +54,7 @@
         .header h1 {
             font-size: 2.8em;
             text-transform: uppercase;
-            color: var(--cor-verde); /* Alterado para a nova variável verde */
+            color: var(--cor-verde);
             letter-spacing: 2px;
             margin-bottom: 8px;
         }
@@ -65,9 +65,10 @@
             line-height: 1.5;
         }
 
+        /* ESTILO DO PÓDIO EM TELAS GRANDES (PC/Tablet Landscape) */
         .podium-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr); /* 3 Colunas no PC */
             gap: 30px;
             align-items: end;
             margin-bottom: 40px;
@@ -77,6 +78,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            /* Adicionado padding para separar melhor os itens no celular */
+            padding-bottom: 20px; 
         }
 
         .foto-container {
@@ -143,10 +146,20 @@
         .podium-item.segundo .ranking-label { color: var(--cor-segundo); }
         .podium-item.terceiro .ranking-label { color: var(--cor-terceiro); }
 
-        /* Ajuste de altura para o pódio */
-        .podium-item.primeiro { transform: scale(1.1); margin-bottom: 20px; }
-        .podium-item.segundo { transform: translateY(10px); }
-        .podium-item.terceiro { transform: translateY(20px); }
+        /* Ajuste de altura para o pódio em TELAS GRANDES */
+        .podium-item.primeiro { 
+            transform: scale(1.1); 
+            margin-bottom: 20px; 
+            order: 2; /* Garante que o 1º lugar fique no centro no PC */
+        }
+        .podium-item.segundo { 
+            transform: translateY(10px); 
+            order: 1; /* Garante que o 2º lugar fique à esquerda no PC */
+        }
+        .podium-item.terceiro { 
+            transform: translateY(20px); 
+            order: 3; /* Garante que o 3º lugar fique à direita no PC */
+        }
 
         #mensagem-motivacional {
             margin-top: 50px;
@@ -166,9 +179,77 @@
             display: block;
             margin-top: 15px;
             font-size: 1.1em;
-            color: var(--cor-verde); /* Alterado para a nova variável verde */
+            color: var(--cor-verde);
             font-weight: bold;
         }
+
+        /* ========================================================= */
+        /* CORREÇÃO DE RESPONSIVIDADE: MEDIA QUERY PARA CELULARES */
+        /* Aplica-se a telas com largura máxima de 768px (celulares e tablets pequenos) */
+        /* ========================================================= */
+        @media (max-width: 768px) {
+            
+            /* Ajusta o padding do container para não ficar tão apertado */
+            .container {
+                padding: 20px 15px; 
+            }
+
+            /* Reduz o tamanho da logo */
+            .logo {
+                width: 70px; 
+                top: 10px;
+                left: 10px;
+            }
+
+            /* Reduz o tamanho do título principal */
+            .header h1 {
+                font-size: 2em; 
+                margin-top: 20px; /* Afasta o título da logo */
+            }
+
+            /* Muda o Grid para apenas UMA coluna, empilhando os vencedores */
+            .podium-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            /* Remove transformações e order para exibir em sequência no celular */
+            .podium-item.primeiro,
+            .podium-item.segundo,
+            .podium-item.terceiro {
+                transform: none;
+                margin-bottom: 0;
+                order: initial; /* Volta para a ordem do HTML (2º, 1º, 3º) */
+            }
+            
+            /* Para garantir a ordem correta no celular (1º, 2º, 3º), 
+            você pode reverter a ordem no HTML ou usar CSS */
+            /* Se for manter a ordem atual do HTML (2º, 1º, 3º), você pode usar: */
+            .podium-item.segundo { order: 2; }
+            .podium-item.primeiro { order: 1; }
+            .podium-item.terceiro { order: 3; }
+            /* Se preferir a ordem 1º, 2º, 3º no celular, e a ordem no HTML for 1º, 2º, 3º, 
+            basta remover o 'order: initial' e os 'order: X' acima e mudar a estrutura do HTML */
+            
+            /* Reduz o tamanho da foto e da fonte para caber melhor */
+            .foto-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .info-colaborador h3 {
+                font-size: 1.2em;
+            }
+            
+            .ranking-label {
+                font-size: 1.5em;
+            }
+            
+            #mensagem-motivacional p {
+                font-size: 1.2em;
+            }
+        }
+
     </style>
 </head>
 <body>
